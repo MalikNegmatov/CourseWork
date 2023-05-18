@@ -1,7 +1,7 @@
 public class Employee {
     private final String firstName;   // Имя
-    private String middleName;  // Отчество
-    private String lastName;    // Фамилия
+    private final String middleName;  // Отчество
+    private final String lastName;    // Фамилия
     private int department;     // отдел
     private int salary;         // зарплата
     public static int id = 1;   // счетчик для присваивания объекту класса уникального id
