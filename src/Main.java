@@ -38,7 +38,6 @@ public class Main {
                 "Отдел" + valueOf(blank).repeat(3) + pipe + blank +
                 "Зарплата" + valueOf(blank).repeat(3) + pipe;
         System.out.println(field);
-        System.out.println(line);
     }
 
 }
