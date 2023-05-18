@@ -1,5 +1,5 @@
 public class Employee {
-    private String firstName;   // Имя
+    private final String firstName;   // Имя
     private String middleName;  // Отчество
     private String lastName;    // Фамилия
     private int department;     // отдел
@@ -26,17 +26,10 @@ public class Employee {
     public int getIdEmployee() {
         return idEmployee;
     }
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-    public void setDepartment(int department) {
-        this.department = department;
+     public void setDepartment(int department) {
+         if ( department < 6 && department > 0 ) {
+             this.department = department;
+         }
     }
     public void setSalary(int salary) {
         this.salary = salary;
@@ -91,8 +84,9 @@ public class Employee {
     }
     @Override
     public String toString() {
-        return "id " + this.idEmployee + ": " + this.lastName + " " + this.firstName + " " +
-                this.middleName + ": отдел №" + this.department + ": зарплата: " + this.salary;
+        return String.format("| %-3s| %-18s| %-14s| %-15s| %-8s| %-11s|", this.getIdEmployee(),
+                this.getLastName(), this.getFirstName(), this.getMiddleName(),
+                this.getDepartment(), this.getSalary());
     }
     @Override
     public boolean equals(Object other) {

@@ -51,19 +51,20 @@ public class EmployeeService {
     public static double getAverageDepartmentSalary(Employee[] employees, int department) {
         return getSumAllSalary(employees, department)/getDepartmentLength(employees, department);
     }
-    public static void printListString (Employee employee){
-        System.out.printf("| %-3s| %-18s| %-14s| %-15s| %-8s| %-11s|\n", employee.getIdEmployee(),
-                employee.getLastName(), employee.getFirstName(), employee.getMiddleName(),
-                employee.getDepartment(), employee.getSalary());
-    }
-
     public static char dash = '-', pipe = '|', plus = '+', blank = ' ';
-    public static String line;
-    public static void printListFields () {
-        line = plus + valueOf(dash).repeat(4) + plus + valueOf(dash).repeat(19) +
+    public static void printLine() {
+        String line = plus + valueOf(dash).repeat(4) + plus + valueOf(dash).repeat(19) +
                 plus + valueOf(dash).repeat(15) + plus + valueOf(dash).repeat(16) + plus +
                 valueOf(dash).repeat(9) + plus + valueOf(dash).repeat(12) + plus;
         System.out.println(line);
+    }
+    public static void printListFields () {
+        printLine();
+        fieldTable();
+        printLine();
+    }
+
+    private static void fieldTable() {
         String field = pipe + " id " + pipe + blank +
                 "Фамилия" + valueOf(blank).repeat(11) + pipe + blank +
                 "Имя" + valueOf(blank).repeat(11) + pipe +  blank +
@@ -71,6 +72,54 @@ public class EmployeeService {
                 "Отдел" + valueOf(blank).repeat(3) + pipe + blank +
                 "Зарплата" + valueOf(blank).repeat(3) + pipe;
         System.out.println(field);
-        System.out.println(line);
+    }
+    public static void printList (Employee[] employees) {
+        printListFields();
+        for (Employee employee : employees) {
+            System.out.println(employee);
+        }
+        EmployeeService.printLine();
+    }
+    private static void fieldNamesTable() {
+        String field = pipe + " id " + pipe + blank +
+                "Фамилия Имя Отчество" + valueOf(blank).repeat(54) + pipe;
+        System.out.println(field);
+    }
+    public static void printNamesFields () {
+        EmployeeService.printLine();
+        fieldNamesTable();
+        EmployeeService.printLine();
+    }
+
+    public static String namesToString(Employee employee) {
+        String out = employee.getLastName() + blank + employee.getFirstName() + blank + employee.getMiddleName();
+        return String.format("| %-3s| %-74s|", employee.getIdEmployee(), out);
+    }
+    public static void printSortedAllNameList (Employee[] employees) {
+        printNamesFields();
+        for (Employee employee : employees) {
+            System.out.println(namesToString(employee));
+        }
+        EmployeeService.printLine();
+    }
+    public static void printAllSalary (Employee[] employees) {
+        String field = "Сумма затрат на зарплаты в месяц";
+        System.out.printf("| %-56s| %-21s|\n",field,getSumAllSalary(employees));
+        EmployeeService.printLine();
+    }
+    public static void printMinSalary (Employee[] employees) {
+        String field = "Сотрудник с минимальной зарплатой";
+        System.out.printf("| %-56s| %-21s|\n",field,getMinSalary(employees,200000));
+        EmployeeService.printLine();
+    }
+    public static void printMaxSalary (Employee[] employees) {
+        String field = "Сотрудник с максимальной зарплатой";
+        System.out.printf("| %-56s| %-21s|\n",field,getMaxSalary(employees));
+        EmployeeService.printLine();
+    }
+    public static void printAverageSalary (Employee[] employees) {
+        String field = "Среднее значение зарплат";
+        System.out.printf("| %-56s| %-21s|\n",field,getAverageSalary(employees));
+        EmployeeService.printLine();
     }
 }
