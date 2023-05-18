@@ -49,5 +49,9 @@ public class EmployeeService {
     public static double getAverageDepartmentSalary(Employee[] employees, int department) {
         return getSumAllSalary(employees, department)/getDepartmentLength(employees, department);
     }
-
+    public static void printListString (Employee employee){
+        System.out.printf("| %-3s| %-18s| %-14s| %-15s| %-8s| %-11s|\n", employee.getIdEmployee(),
+                employee.getLastName(), employee.getFirstName(), employee.getMiddleName(),
+                employee.getDepartment(), employee.getSalary());
+    }
 }

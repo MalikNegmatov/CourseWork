@@ -14,7 +14,7 @@ public class Main {
 
         printListFields();
         for (int i = 0; i < 12; i++) {
-            printListString(employeeList[i]);
+            EmployeeService.printListString(employeeList[i]);
         }
         System.out.println(line);
         System.out.println(employeeList.length);
@@ -40,9 +40,5 @@ public class Main {
         System.out.println(field);
         System.out.println(line);
     }
-    public static void printListString (Employee employee){
-        System.out.printf("| %-3s| %-18s| %-14s| %-15s| %-8s| %-11s|\n", employee.getIdEmployee(),
-                employee.getLastName(), employee.getFirstName(), employee.getMiddleName(),
-                employee.getDepartment(), employee.getSalary());
-    }
+
 }
